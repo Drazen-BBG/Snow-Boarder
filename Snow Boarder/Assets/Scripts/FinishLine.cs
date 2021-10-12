@@ -12,6 +12,7 @@ public class FinishLine : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            finishEffect.Play();
             Invoke("ReloadSceneMethod", loadDelay);
         }
     }
