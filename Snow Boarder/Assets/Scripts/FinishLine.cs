@@ -10,6 +10,7 @@ public class FinishLine : MonoBehaviour
         if (collision.tag == "Player")
         {
             Debug.Log("Win");
+            SceneManager.LoadScene(0);
         }
     }
 }
