@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] ParticleSystem glideEffect;
+
     Rigidbody2D player_RB2D;
 
     [SerializeField] float torquePower = 2000;
@@ -24,5 +26,38 @@ public class PlayerController : MonoBehaviour
         */
 
         player_RB2D.AddTorque(-Input.GetAxis("Horizontal") * torquePower * Time.deltaTime);
+
+
+
+
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Ground")
+        {
+            glideEffect.Play();
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+       
+            glideEffect.Stop();
+        
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Ground")
+        {
+            glideEffect.Play();
+        }
+        else if (other.tag != "Ground")
+        {
+            glideEffect.Play();
+        }
     }
 }
